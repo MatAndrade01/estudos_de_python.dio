@@ -4,20 +4,21 @@ extrato = ''
 numeros_de_saque = 0
 LIMITE_DE_SAQUES = 3
 
-
 print('''
 ======================= OPERAÇÕES =======================
       
-      [1] - SAQUE
-      [2] - DEPOSITO
-      [3] - EXTRATO
-      [0] - SAIR
+                        [1] - SAQUE
+                        [2] - DEPOSITO
+                        [3] - EXTRATO
+                        [0] - SAIR
 
 =========================================================
 ''')
 
 opcao = int(input('Escolha a operção que você deseja: '))
-
+while opcao != 1 and opcao != 2 and opcao != 3 and opcao != 0:
+    print('Digite um valor valido!')
+    opcao = int(input('Escolha a operção que você deseja: '))
 while True:
 
     if opcao == 1:
@@ -26,6 +27,7 @@ while True:
             print()
             opcao = int(input('Escolha outra opção: '))
         else:
+            print(f'Seu saldo é de R${saldo}')
             valor_do_saque = int(input('Quanto deseja sacar: '))
 
             if valor_do_saque > limite:
@@ -38,6 +40,7 @@ while True:
             elif valor_do_saque <= saldo and valor_do_saque <= limite:
                 numeros_de_saque += 1
                 saldo -= valor_do_saque
+                extrato += f'Saque: R$ {valor_do_saque:.2f}'
                 print(f'''Saque no valor de {valor_do_saque} realizado,
                       Quantidade de saques: {numeros_de_saque}''')
                 print()
@@ -59,6 +62,7 @@ while True:
                         elif valor_do_saque  <= saldo and valor_do_saque <= limite:
                             numeros_de_saque += 1
                             saldo = saldo - valor_do_saque
+                            extrato += f'Saque: R$ {valor_do_saque:.2f}'
                             print(f'''Saque no valor de R${valor_do_saque} realizado,
                             Quantidade de saques: {numeros_de_saque}''')
                             print()
@@ -91,13 +95,36 @@ while True:
             print('''
             ======================= OPERAÇÕES =======================
       
-                [1] - SAQUE
-                [2] - DEPOSITO
-                [3] - EXTRATO
-                [0] - SAIR
+                                    [1] - SAQUE
+                                    [2] - DEPOSITO
+                                    [3] - EXTRATO
+                                    [0] - SAIR
 
             =========================================================
             ''')
             opcao = int(input('Escolha a operção que você deseja: '))
 
-    
+    elif opcao == 3:
+        print('\n======================= EXTRATO =======================')
+        print('Não foram realizadas movimentações.' if not extrato else extrato)
+        print(f'\nSaldo: R${saldo:.2f}')
+        print('==========================================================')
+        nova_operacao = int(input('Deseja fazer uma nova operação ? [1] - SIM [2] - NÃO: '))
+        while nova_operacao != 1 and nova_operacao != 2:
+            print('Valor invalido!')
+            nova_operacao = int(input('Deseja fazer uma nova operação ? [1] - SIM [2] - NÃO: '))
+        if nova_operacao == 1:
+            print('''
+            ======================= OPERAÇÕES =======================
+      
+                                    [1] - SAQUE
+                                    [2] - DEPOSITO
+                                    [3] - EXTRATO
+                                    [0] - SAIR
+
+            =========================================================
+            ''')
+            opcao = int(input('Escolha a operção que você deseja: '))
+        elif nova_operacao == 2:
+            print('Obrigado por usar nosso sistema!!')
+            break
