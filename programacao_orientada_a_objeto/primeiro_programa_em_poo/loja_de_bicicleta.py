@@ -4,4 +4,27 @@ class Bicicleta:
         self.modelo = modelo
         self.ano = ano
         self.valor = valor
-        
+        self.marchar = 1
+
+    def buzinar(self):
+        print('Plim plim...')
+
+    def parar(self):
+        print('Parando Bicicleta')
+        print('Bicicleta parada!')
+
+    def correr(self):
+        print('Vrummmmm...')
+
+    def __str__(self):
+        return f"{self.__class__.__name__}: {', '.join([f'{chave}={valor}' for chave, valor in self.__dict__.items()])}"
+
+b1 = Bicicleta('Vermelha', 'Caloi', 2002, 600)
+b1.buzinar()
+b1.correr()
+b1.parar()
+print(b1.cor, b1.modelo, b1.ano, b1.valor)
+
+b2 = Bicicleta('Verde', 'Monark', 2000, 189)
+print(b2)
+b2.correr()
